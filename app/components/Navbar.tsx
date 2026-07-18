@@ -4,19 +4,22 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/#destinations", label: "Destinations" },
-  { href: "/#accommodations", label: "Homestays" },
-  { href: "/#kuliner", label: "Kuliner" },
-];
+import { useLanguage } from "@/app/context/LanguageContext";
+import translations, { t } from "@/app/lib/translations";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("/");
+  const { lang, toggleLang } = useLanguage();
+
+  const navLinks = [
+    { href: "/", label: t(translations.nav.home, lang) },
+    { href: "/#destinations", label: t(translations.nav.destinations, lang) },
+    { href: "/#accommodations", label: t(translations.nav.homestays, lang) },
+    { href: "/#kuliner", label: t(translations.nav.kuliner, lang) },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -136,13 +139,14 @@ export default function Navbar() {
         {/* Language Toggle */}
         <div className="hidden md:block">
           <button
-            className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-all duration-200 ${
+            onClick={toggleLang}
+            className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-all duration-200 cursor-pointer ${
               showSolid
                 ? "border-neutral-200 text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50"
                 : "border-white/30 text-white/80 hover:bg-white/10 hover:text-white"
             }`}
           >
-            EN/ID
+            {lang === "id" ? "EN" : "ID"}
           </button>
         </div>
 
@@ -205,8 +209,11 @@ export default function Navbar() {
             );
           })}
           <li className="mt-2 pt-2 border-t border-neutral-100">
-            <button className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-medium text-neutral-500 rounded-full border border-neutral-200">
-              EN/ID
+            <button
+              onClick={toggleLang}
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-medium text-neutral-500 rounded-full border border-neutral-200 cursor-pointer"
+            >
+              {lang === "id" ? "EN" : "ID"}
             </button>
           </li>
         </ul>

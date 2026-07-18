@@ -1,0 +1,414 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Desa Wisata - Authentic Village Tourism</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e0e3e5",
+                        "inverse-primary": "#68dba9",
+                        "surface-container": "#eceef0",
+                        "surface-variant": "#e0e3e5",
+                        "surface-tint": "#006c4a",
+                        "tertiary-fixed": "#66ff8e",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#3d4a42",
+                        "primary-fixed": "#85f8c4",
+                        "on-surface": "#191c1e",
+                        "tertiary-fixed-dim": "#3de273",
+                        "primary-container": "#00855d",
+                        "on-secondary-fixed-variant": "#4a4642",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#bccac0",
+                        "surface-container-low": "#f2f4f6",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f7f9fb",
+                        "secondary": "#625e59",
+                        "primary-fixed-dim": "#68dba9",
+                        "on-primary-container": "#f5fff7",
+                        "on-secondary-container": "#68635f",
+                        "tertiary": "#006b2e",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002114",
+                        "on-tertiary-fixed": "#002109",
+                        "on-background": "#191c1e",
+                        "secondary-container": "#e9e1db",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#005322",
+                        "tertiary-container": "#00873c",
+                        "outline": "#6d7a72",
+                        "primary": "#006948",
+                        "on-tertiary-container": "#f7fff3",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#e9e1db",
+                        "background": "#faf8f5",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#005137",
+                        "surface": "#faf8f5",
+                        "on-secondary-fixed": "#1e1b18",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#ccc5c0",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "inverse-surface": "#2d3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "base": "8px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "section-gap": "80px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Outfit"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "label-caps": ["Outfit"],
+                        "body-lg": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-sm": ["28px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "headline-md": ["40px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["42px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .lift-up {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .lift-up:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px -12px rgba(68, 64, 60, 0.2);
+        }
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom {
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .lift-up:hover .img-zoom {
+            transform: scale(1.08);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .bg-parchment {
+            background-color: #faf8f5;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' fill='none'/%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-parchment text-on-background font-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#faf8f5]/90 backdrop-blur-md shadow-sm transition-all duration-300" id="mainNav">
+<div class="flex justify-between items-center px-margin-mobile md:px-gutter py-4 max-w-container-max mx-auto">
+<a class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight" href="#">Desa Wisata</a>
+<div class="hidden md:flex space-x-8 items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md hover:text-primary transition-all duration-300" href="#home">Home</a>
+<a class="text-secondary hover:text-primary transition-colors font-body-md text-body-md" href="#homestays">Homestays</a>
+<a class="text-secondary hover:text-primary transition-colors font-body-md text-body-md" href="#kuliner">Kuliner</a>
+<a class="text-secondary hover:text-primary transition-colors font-body-md text-body-md" href="#destinations">Destinations</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-secondary hover:text-primary transition-colors font-body-md text-body-md hidden md:block">EN/ID</button>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 0;">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center pt-20" id="home">
+<div class="absolute inset-0 z-0">
+<img alt="Beautiful misty sunrise over terraced rice paddies in a traditional village setting" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlDMQdOE4gDa6jOVE29VXaiAQkscYQ8ZEPUfjlqxt2aZU2fRiO-W-AJ7gRerEpUbE3APBY6fqaxkPoummQ02YmTrW1IjUoFhdPWIlwBsUD5EVdHzfz8gIcrfi-AV9m9tF4H3jU_FEHbGrwWYO5UmXrVEVOG0U5Bx88S7R3aJA1bSO-EAWgvtB4iMUsP1uMn1Sam7XDCp0jAj5yo3trod-IBPUlfPUjzYkv_yg8NsdfH4haxgmUFtvYn60z5rE4vbCG77aboq8-DTs">
+<div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+</div>
+<div class="relative z-10 text-center px-margin-mobile md:px-gutter max-w-4xl mx-auto flex flex-col items-center mt-12">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-[#FDFBF7] mb-6 drop-shadow-2xl italic">
+                Discover the Authentic Village Life
+            </h1>
+<p class="font-body-lg text-body-lg text-white/90 mb-10 max-w-2xl drop-shadow-lg font-light tracking-wide">
+                Experience the soul of Indonesia through breathtaking landscapes and rich cultural heritage.
+            </p>
+<a class="inline-flex items-center justify-center bg-[#FDFBF7] hover:bg-[#E8E4DB] text-primary px-10 py-4 rounded-[2rem] rounded-tl-xl rounded-br-xl font-body-md text-body-md font-semibold transition-all duration-300 lift-up group shadow-xl" href="#destinations">
+                Explore Now
+                <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform" style="font-variation-settings: &quot;FILL&quot; 0;">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-section-gap px-margin-mobile md:px-gutter max-w-container-max mx-auto" id="about">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="relative rounded-[2rem] overflow-hidden shadow-2xl lift-up group h-[600px] border-[8px] border-[#FDFBF7]">
+<img alt="A serene view from inside a traditional wooden homestay looking out over a lush green jungle canopy" class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBATPhXvJ5N6N-YZMLeZDd_LT-XiktQlkgHhd_GCAmyEnuiSkuZzvdmz0Vv8DdwHdPiV_zpA0fXSyzA9wBAdiVGms7t9qCzaLY-XJoZ4-QmNMDOD2iciLuVpo4SIg6B7AnVLtPUgjbGUuf0ohwQW02-XvHaJQjJI9elQKkibCosmcY0gga4_nlDUJWHn21lCFxFH159dN9_bkgPXRTS2nw7JBXzP4tme0i9Ty9zbQh9gXPOZ4PH7NsU7_tgYiSijLoWBcvHt20cQLM">
+<div class="absolute inset-0 rounded-[3rem] rounded-tl-[1rem] rounded-br-[1rem] ring-1 ring-inset ring-black/5"></div>
+</div>
+<div class="flex flex-col space-y-8 pl-4">
+<div class="inline-flex items-center space-x-3 text-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">eco</span>
+<span class="font-label-caps text-label-caps uppercase tracking-[0.2em]">Our Heritage</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface leading-tight italic">Rooted in Nature, <br>Crafted by Tradition.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-lg">
+                    Step away from the bustle of modern life and immerse yourself in a rhythm dictated by the sun and seasons. Our village offers a sanctuary where sustainable agriculture and ancient cultural practices thrive in harmony with the pristine environment.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-lg">
+                    Every path leads to a story, every meal is a celebration of local harvest, and every sunset over the rice terraces reminds us of the simple beauty of existence.
+                </p>
+<div class="pt-6 border-t border-outline-variant/30">
+<a class="inline-flex items-center text-primary font-semibold hover:text-primary-container transition-colors group text-lg" href="#">
+                        Read Our Story
+                        <span class="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform" style="font-variation-settings: &quot;FILL&quot; 0;">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Homestays Section -->
+<section class="py-section-gap px-margin-mobile md:px-gutter max-w-container-max mx-auto" id="homestays">
+<div class="text-center mb-20">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-[0.2em] block mb-4 flex items-center justify-center gap-2">
+<span class="w-8 h-px bg-primary/40"></span>
+            Akomodasi
+            <span class="w-8 h-px bg-primary/40"></span>
+</span>
+<h2 class="font-headline-md text-headline-md text-on-surface italic">Where to Stay</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Homestay 1 -->
+<div class="flex flex-col md:flex-row bg-[#FDFBF7] rounded-[2rem] overflow-hidden shadow-xl lift-up border border-[#E8E4DB]">
+<div class="md:w-2/5 relative h-72 md:h-auto img-zoom-container">
+<img alt="A beautifully designed wooden cabin interior with large windows looking out into a dense tropical jungle, featuring a comfortable bed and natural textures." class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGjiC50x3KAq2kAs1ZpZHtiwDZzBQ_4ZMiXbJoLx8qhCBLisOUENmp0SIX__k-n2JSEtg2t2uJX-AhWl7ogtc_fV5rx0DMMxg6YmlkGQ6cGj1Mry7wRmfFl-_jnLsFECHyOzcnU9QuOF8nuLJPGOMjU_wXdMo9aPylZ3rBbz11H5YjaUJG77PnY31XRwYIHySCs3zcIJWDyq1BWE8k3qoCcyNaWVBZIRz9sXPaEJOArDocp0qi9MNqa-QR93cY-ls7nIznR5fQ-pk">
+</div>
+<div class="p-8 md:w-3/5 flex flex-col justify-center">
+<div class="flex justify-between items-start mb-3">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Lumbung Cabin</h3>
+</div>
+<p class="text-primary font-semibold text-xl mb-6">IDR 450k <span class="text-on-surface-variant text-base font-normal italic">/ night</span></p>
+<div class="flex space-x-5 mb-8 text-secondary">
+<div class="flex items-center" title="Wifi">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: &quot;FILL&quot; 0;">wifi</span>
+</div>
+<div class="flex items-center" title="Comfortable Bed">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: &quot;FILL&quot; 0;">bed</span>
+</div>
+<div class="flex items-center" title="Coffee">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: &quot;FILL&quot; 0;">local_cafe</span>
+</div>
+</div>
+<button class="mt-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 px-6 rounded-2xl rounded-tl-md rounded-br-md font-medium transition-colors w-full sm:w-auto self-start shadow-md">
+<svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+                        Book WhatsApp
+                    </button>
+</div>
+</div>
+<!-- Homestay 2 -->
+<div class="flex flex-col md:flex-row bg-[#FDFBF7] rounded-[2rem] overflow-hidden shadow-xl lift-up border border-[#E8E4DB]">
+<div class="md:w-2/5 relative h-72 md:h-auto img-zoom-container">
+<img alt="A luxurious outdoor lounging area on a wooden deck surrounded by lush tropical plants, featuring a daybed and a view of the forest." class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5jrBWqHGnYMsdwif9ul-R7wJFRQD05837zarb_YgYlKr9r7yvDCwaIsWErh29lIPyaIsq4ns98v-v2KvvScqIcOccq1hsMW7tIa18kp4Vkuh8u0MZ8hNLqYgsmQRnQf0LUPw9-kK-RKpWCUKc5MlQthaSOYrrl8ZnDb7dRiX05f1HGRT7Fg-KWMeLjJFPQVm4Zm2Oa1w2rL3Wr_JFpwh8-tcC1r0DteuyMeZguO82_kdGRjpWc1pfcVpdY3i1X3kX0gGFlVDc6ek">
+</div>
+<div class="p-8 md:w-3/5 flex flex-col justify-center">
+<div class="flex justify-between items-start mb-3">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Garden Suite</h3>
+</div>
+<p class="text-primary font-semibold text-xl mb-6">IDR 850k <span class="text-on-surface-variant text-base font-normal italic">/ night</span></p>
+<div class="flex space-x-5 mb-8 text-secondary">
+<div class="flex items-center" title="Wifi">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: &quot;FILL&quot; 0;">wifi</span>
+</div>
+<div class="flex items-center" title="Pool">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: &quot;FILL&quot; 0;">pool</span>
+</div>
+<div class="flex items-center" title="Breakfast">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: &quot;FILL&quot; 0;">restaurant</span>
+</div>
+</div>
+<button class="mt-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 px-6 rounded-2xl rounded-tr-md rounded-bl-md font-medium transition-colors w-full sm:w-auto self-start shadow-md">
+<svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+                        Book WhatsApp
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Kuliner Section -->
+<section class="py-section-gap px-margin-mobile md:px-gutter max-w-container-max mx-auto" id="kuliner">
+<div class="text-center mb-20">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-[0.2em] block mb-4 flex items-center justify-center gap-2">
+<span class="w-8 h-px bg-primary/40"></span>
+            Kuliner
+            <span class="w-8 h-px bg-primary/40"></span>
+</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 italic">Taste the Heritage</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto text-lg">Savor the authentic taste of our village, prepared with fresh ingredients and centuries-old recipes passed down through generations.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<!-- Item 1 -->
+<div class="bg-[#FDFBF7] rounded-[2rem] overflow-hidden shadow-xl lift-up flex flex-col group border border-[#E8E4DB]">
+<div class="relative h-80 img-zoom-container">
+<img alt="Traditional Feast (Nasi Campur)" class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU2LFXi5KMXRM6ReCBhgwyQimSbhyMxV92Kwx1FtEmIH2fgWC7W7O7wMW60UtLqsvaJGnrL7sGwXCFXx5yE_PD7S1pC8jTbpDDh2SBcUMtxIu4QO7T6ZJF6nWXYvPDS8j02cY9ra9SeC0zduqOdMr3cwiwfH2El4sOHVaipuwFKpE3zik_o6LzbQvt4dMSf8iTFILfiqtXJT7-0kHdmyqwAVr8P8VwD6WNfQfhce4bdhEd1tyAQrdufFKVGDGfXSWzJu2tFtTbEMc">
+<div class="absolute top-6 right-6 glass-panel px-4 py-2 rounded-[1rem] rounded-tr-sm text-on-surface font-label-caps text-label-caps shadow-lg">
+                            IDR 75k
+                        </div>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Nasi Campur Heritage</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow text-lg">A vibrant platter of seasoned rice, grilled fish, and local sambals served on traditional banana leaves.</p>
+<button class="w-full py-4 border-2 border-outline-variant text-on-surface rounded-[1.5rem] font-semibold hover:bg-[#E8E4DB] hover:border-[#E8E4DB] transition-colors">
+                            Savor the Details
+                        </button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-[#FDFBF7] rounded-[2rem] overflow-hidden shadow-xl lift-up flex flex-col group border border-[#E8E4DB]">
+<div class="relative h-80 img-zoom-container">
+<img alt="Village Snacks (Jajanan Pasar)" class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrO9eOuMT7dDQQe7ltm2FCb5npptvEOajRPJ66BbNQy-Z6KXbMk94XYxwiOg-fGvZT5KlfY63IcBssa6DQF1GPBqfaSL-jYayYPJJzr5cIkcPswkyvxSywRAymcVCrewdgG9mvpPHro25F7Ozugrxpj4z2KYmsbOSmdgTGUNYPzZslqNDF8UjNC0mJI87jjchnNLJyh19GJrjT0gFZWNu1RGka5ZXVvOCF6kOxjJwCXenFmai2Z2yGJCS33ec_50PpBED3bDNRZrk">
+<div class="absolute top-6 right-6 glass-panel px-4 py-2 rounded-[1rem] rounded-tl-sm text-on-surface font-label-caps text-label-caps shadow-lg">
+                            IDR 25k
+                        </div>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Jajanan Pasar</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow text-lg">Handcrafted sweet treats like Klepon and Kue Lapis, perfect for a light afternoon delight with local tea.</p>
+<button class="w-full py-4 border-2 border-outline-variant text-on-surface rounded-[1.5rem] font-semibold hover:bg-[#E8E4DB] hover:border-[#E8E4DB] transition-colors">
+                            Savor the Details
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Destinations Section -->
+<section class="py-section-gap px-margin-mobile md:px-gutter" id="destinations">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-20">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-[0.2em] block mb-4 flex items-center justify-center gap-2">
+<span class="w-8 h-px bg-primary/40"></span>
+            Destinasi
+            <span class="w-8 h-px bg-primary/40"></span>
+</span>
+<h2 class="font-headline-md text-headline-md text-on-surface italic">Immersive Journeys</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<!-- Card 1 -->
+<div class="bg-[#FDFBF7] rounded-[2rem] overflow-hidden shadow-xl lift-up flex flex-col group border border-[#E8E4DB]">
+<div class="relative h-72 img-zoom-container">
+<img alt="A beautiful hidden waterfall cascading into a clear turquoise pool surrounded by vibrant green mossy rocks and dense tropical jungle foliage." class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkSeJe22i8L1Gaj3lTYE4zGY_dsy2bWHGwenwOwl3UsoCZBeZjdGG3wQjiIMzII7RtgLyWkJG7H7DRIyJt_SHysKPRHAhy15eiL2uSHTzD9ASVSXYqG7-n-_MYUfVkzDbIDmHrB3UDUekzNNpxLhd-8HERdqZGrL7rjARjA5wCovGdIDwWOduFq9r8SIih0rP7aFOU6y70kvTGTBH0LoQUvBR9ekRABNcsUXs-89E0Il_TlL0E2U2m0yvbGDctSHHFBFTVzzRgKfk">
+<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-6 text-white font-headline-sm text-2xl drop-shadow-md">Waterfall</div>
+<div class="absolute top-4 right-4 glass-panel px-3 py-1 rounded-[1rem] text-on-surface font-label-caps text-label-caps shadow-sm">
+                            IDR 25k
+                        </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Pristine waters in the heart of the jungle.</p>
+<button class="w-full py-3 border border-outline-variant text-on-surface rounded-xl font-medium hover:bg-[#E8E4DB] transition-colors">
+                            Explore
+                        </button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#FDFBF7] rounded-[2rem] overflow-hidden shadow-xl lift-up flex flex-col group border border-[#E8E4DB]">
+<div class="relative h-72 img-zoom-container">
+<img alt="Expansive emerald green rice terraces carved into the hillside, illuminated by warm golden morning sunlight with a majestic mountain peak in the hazy background." class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvyKlHygDmJ4DcDjvjATGJh9ewOYiUyS0ZCrmc1wTInMw-fs0ZPzquPt3CLOeRJ1C9j75Xz-fkP_MHz0A573vTh8f8pApcqeR0GbBtLqSVkjeAqIUBrYC96F4Cx5wGuS0Uj-PZ7F9kXmgo1LQG8ujKayr95T5c4tVUFUsCSXfeGjXvMIUMTPtllkdbI5M4N7hH5zft8JApsACbNLpb3whdaGcwluP8qPuAUmLdz9fs9wymgAqF2GHRWcxVKwejhRWMRudSEEofczQ">
+<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-6 text-white font-headline-sm text-2xl drop-shadow-md">Terraces</div>
+<div class="absolute top-4 right-4 glass-panel px-3 py-1 rounded-[1rem] text-on-surface font-label-caps text-label-caps shadow-sm">
+                            IDR 50k
+                        </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Ancient farming traditions with panoramic views.</p>
+<button class="w-full py-3 border border-outline-variant text-on-surface rounded-xl font-medium hover:bg-[#E8E4DB] transition-colors">
+                            Explore
+                        </button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#FDFBF7] rounded-[2rem] overflow-hidden shadow-xl lift-up flex flex-col group border border-[#E8E4DB]">
+<div class="relative h-72 img-zoom-container">
+<img alt="An aerial view of a traditional rural village nestled among vibrant green terraced fields, with misty hills in the background during golden hour." class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlDMQdOE4gDa6jOVE29VXaiAQkscYQ8ZEPUfjlqxt2aZU2fRiO-W-AJ7gRerEpUbE3APBY6fqaxkPoummQ02YmTrW1IjUoFhdPWIlwBsUD5EVdHzfz8gIcrfi-AV9m9tF4H3jU_FEHbGrwWYO5UmXrVEVOG0U5Bx88S7R3aJA1bSO-EAWgvtB4iMUsP1uMn1Sam7XDCp0jAj5yo3trod-IBPUlfPUjzYkv_yg8NsdfH4haxgmUFtvYn60z5rE4vbCG77aboq8-DTs">
+<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-6 text-white font-headline-sm text-2xl drop-shadow-md">Village Walk</div>
+<div class="absolute top-4 right-4 glass-panel px-3 py-1 rounded-[1rem] text-on-surface font-label-caps text-label-caps shadow-sm">
+                            IDR 100k
+                        </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">A journey through traditional homes and crafts.</p>
+<button class="w-full py-3 border border-outline-variant text-on-surface rounded-xl font-medium hover:bg-[#E8E4DB] transition-colors">
+                            Explore
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#E8E4DB] w-full rounded-t-[3rem] px-margin-mobile md:px-gutter py-section-gap mt-12 border-t border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 max-w-container-max mx-auto">
+<div class="max-w-md">
+<a class="text-headline-md font-headline-md font-bold text-on-secondary-fixed block mb-6 tracking-tight italic" href="#">Desa Wisata</a>
+<p class="text-on-secondary-fixed-variant font-body-md text-body-md leading-relaxed">
+                    Authentic village experiences, sustainable tourism, and unforgettable memories deeply rooted in nature.
+                </p>
+</div>
+<div class="flex flex-col space-y-5">
+<h4 class="font-headline-sm text-xl mb-2 text-on-secondary-fixed">Visit Us</h4>
+<a class="text-on-secondary-fixed-variant hover:text-primary hover:underline transition-all duration-200 font-body-md text-body-md" href="#">Village Address</a>
+<a class="text-on-secondary-fixed-variant hover:text-primary hover:underline transition-all duration-200 font-body-md text-body-md" href="#">Contact Info</a>
+<a class="text-on-secondary-fixed-variant hover:text-primary hover:underline transition-all duration-200 font-body-md text-body-md" href="#">Privacy Policy</a>
+</div>
+<div class="mt-8 md:mt-0 md:self-end text-on-secondary-fixed-variant font-body-md text-body-md text-sm opacity-80">
+                © 2024 Desa Wisata. All rights reserved.
+            </div>
+</div>
+</footer>
+<script>
+        // Simple scroll effect for navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+                nav.classList.remove('shadow-sm');
+                nav.classList.add('bg-[#faf8f5]/95');
+                nav.classList.remove('bg-[#faf8f5]/90');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.add('shadow-sm');
+                nav.classList.remove('bg-[#faf8f5]/95');
+                nav.classList.add('bg-[#faf8f5]/90');
+            }
+        });
+    </script>
+
+
+</body></html>

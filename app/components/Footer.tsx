@@ -1,13 +1,18 @@
-import Link from "next/link";
+"use client";
 
-const footerLinks = [
-  { href: "#", label: "Village Address" },
-  { href: "#", label: "Contact Info" },
-  { href: "#", label: "Privacy Policy" },
-];
+import Link from "next/link";
+import { useLanguage } from "@/app/context/LanguageContext";
+import translations, { t } from "@/app/lib/translations";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { lang } = useLanguage();
+
+  const footerLinks = [
+    { href: "#", label: t(translations.footer.villageAddress, lang) },
+    { href: "#", label: t(translations.footer.contactInfo, lang) },
+    { href: "#", label: t(translations.footer.privacyPolicy, lang) },
+  ];
 
   return (
     <footer className="border-t border-neutral-200 bg-neutral-950 text-neutral-400">
@@ -19,7 +24,7 @@ export default function Footer() {
               Desa Wisata
             </h3>
             <p className="text-sm leading-relaxed text-neutral-500 max-w-xs">
-              Authentic village experiences, sustainable tourism, and unforgettable memories.
+              {t(translations.footer.tagline, lang)}
             </p>
           </div>
 
@@ -42,7 +47,7 @@ export default function Footer() {
           {/* Copyright */}
           <div className="flex items-end md:justify-end">
             <p className="text-xs text-neutral-600">
-              &copy; {currentYear} Desa Wisata. All rights reserved.
+              &copy; {currentYear} {t(translations.footer.copyright, lang)}
             </p>
           </div>
         </div>

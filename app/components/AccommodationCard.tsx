@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import type { Penginapan } from "@/app/types";
 import { getValidImg } from "@/app/lib/utils";
+import translations, { t, tWaBooking, type Lang } from "@/app/lib/translations";
 
 function isValidLink(val?: string | null): boolean {
   if (!val) return false;
   const s = val.trim();
   if (s === "" || s === "(kosong)" || s === "-" || s === "#") return false;
-  // Hanya terima URL yang valid (dimulai dengan http:// atau https://)
   return s.startsWith("http://") || s.startsWith("https://");
 }
 
@@ -17,168 +18,131 @@ function getValidWa(val?: string | null): string | null {
   if (!val) return null;
   const s = val.trim();
   if (s === "" || s === "(kosong)" || s === "-") return null;
-  // Ensure it starts with 62
   let formatted = s;
   if (formatted.startsWith("0")) {
     formatted = "62" + formatted.substring(1);
   } else if (!formatted.startsWith("62") && !formatted.startsWith("+62")) {
-    // If it doesn't start with 62 or +62, assume it's just missing the country code
     formatted = "62" + formatted;
   }
-  // Strip non-numeric characters like + or spaces
   formatted = formatted.replace(/\D/g, "");
   return formatted;
 }
 
-export default function AccommodationCard({ stay }: { stay: Penginapan }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
+export default function AccommodationCard({ stay, lang }: { stay: Penginapan; lang: Lang }) {
   const hasGmaps = isValidLink(stay.link_gmaps);
   const validWa = getValidWa(stay.no_whatsapp);
-  ``;
   const waLink = validWa
     ? `https://wa.me/${validWa}?text=${encodeURIComponent(
-        `Halo ${stay.nama_penginapan}, saya ingin memesan kamar.`,
+        tWaBooking(stay.nama_penginapan, lang)
       )}`
     : null;
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const hasDesc = lang === "id"
+    ? stay.deskripsi_id && stay.deskripsi_id !== "(kosong)" && stay.deskripsi_id !== "-"
+    : stay.deskripsi_en && stay.deskripsi_en !== "(kosong)" && stay.deskripsi_en !== "-";
 
   return (
-    <div className="w-[85vw] sm:w-[360px] shrink-0 snap-center group bg-white rounded-2xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
-      {/* Image */}
-      <div className="relative aspect-[3/2] overflow-hidden">
+    <div className="w-[85vw] md:w-[720px] shrink-0 snap-center group bg-[#FDFBF7] rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col md:flex-row border border-[#E8E4DB]">
+      {/* Image — Left side on desktop */}
+      <div className="md:w-2/5 relative h-72 md:h-auto overflow-hidden">
         <Image
           src={getValidImg(stay.link_gambar, "/images/stay-cabin.png")}
-          alt={stay.nama_penginapan}
+          alt={stay.nama_penginapan || "Gambar Penginapan"}
           fill
+          sizes="(max-width: 768px) 100vw, 40vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
 
-      {/* Content */}
-      <div className="p-5 flex flex-col flex-1">
-        <h3 className="text-lg font-semibold text-neutral-900">
+      {/* Content — Right side on desktop */}
+      <div className="p-8 md:w-3/5 flex flex-col justify-center">
+        <h3 className="text-2xl font-semibold text-neutral-900">
           {stay.nama_penginapan}
         </h3>
-        <p className="mt-1.5 text-sm text-neutral-500 leading-relaxed">
-          {stay.deskripsi_en}
-        </p>
 
-        {/* Expandable Details */}
-        <div
-          className="overflow-hidden transition-all duration-300 ease-in-out"
-          style={{
-            maxHeight: isExpanded ? "400px" : "0px",
-            opacity: isExpanded ? 1 : 0,
-          }}
-        >
-          <div className="mt-4 space-y-3 border-t border-neutral-100 pt-4 flex flex-col items-start text-left">
-            {/* Harga */}
-            {stay.harga && stay.harga !== "(kosong)" && stay.harga !== "-" && (
-              <div className="flex items-center gap-2.5 text-sm w-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-4 w-4 text-primary-600 shrink-0"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"
-                  />
-                </svg>
-                <span className="text-neutral-700 font-medium text-left">
-                  {stay.harga}{" "}
-                  <span className="font-normal text-neutral-500 text-xs">
-                    / night
-                  </span>
-                </span>
-              </div>
-            )}
+        {/* Harga */}
+        {stay.harga && stay.harga !== "(kosong)" && stay.harga !== "-" && (
+          <p className="text-emerald-700 font-semibold text-xl mt-2">
+            {stay.harga}{" "}
+            <span className="text-neutral-500 text-base font-normal italic">
+              {t(translations.cards.perNight, lang)}
+            </span>
+          </p>
+        )}
 
-            {/* Google Maps */}
-            {hasGmaps && (
-              <a
-                href={stay.link_gmaps}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-4 w-4 shrink-0"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-                  />
-                </svg>
-                Lihat di Google Maps
-              </a>
-            )}
-
-            {/* WhatsApp */}
-            {waLink && (
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-green-600 hover:text-green-700 transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-4 w-4 shrink-0"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.221-1.15-2.136-2.389-2.055a18.37 18.37 0 0 0-8.03 1.34m0 0a2.12 2.12 0 0 0-.66.381"
-                  />
-                </svg>
-                Hubungi via WhatsApp
-              </a>
-            )}
-          </div>
-        </div>
-
-        {/* Toggle Button */}
-        <div className="mt-auto pt-5">
+        {/* Toggle Detail Button */}
+        {hasDesc && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-neutral-200 px-4 py-2.5 text-sm font-medium text-neutral-700 transition-all duration-200 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer"
+            className="flex items-center gap-2 text-sm font-medium text-primary-700 hover:text-primary-800 transition-colors mt-4 cursor-pointer"
           >
-            {isExpanded ? "Hide Details" : "View Details"}
-            <svg
+            <span>{isExpanded ? t(translations.cards.hideDetails, lang) : t(translations.cards.viewDetails, lang)}</span>
+            <motion.svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={2}
               stroke="currentColor"
-              className={`h-3.5 w-3.5 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+              className="h-4 w-4"
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ duration: 0.2 }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m19.5 8.25-7.5 7.5-7.5-7.5"
-              />
-            </svg>
+              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </motion.svg>
           </button>
+        )}
+
+        {/* Expandable Details */}
+        <AnimatePresence>
+          {isExpanded && hasDesc && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <p className="mt-4 text-neutral-600 leading-relaxed">
+                {lang === "id" ? stay.deskripsi_id : stay.deskripsi_en}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Action Buttons — Always Visible */}
+        <div className="mt-6 flex flex-wrap gap-3">
+          {/* WhatsApp Button */}
+          {waLink && (
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-3 bg-[#25D366] text-white rounded-xl font-medium hover:bg-[#1fba59] transition-colors shadow-sm"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.252-.149-2.868.852.852-2.868-.149-.252A8 8 0 1112 20z" />
+              </svg>
+              {t(translations.cards.bookWhatsApp, lang)}
+            </a>
+          )}
+
+          {/* Google Maps Button */}
+          {hasGmaps && (
+            <a
+              href={stay.link_gmaps}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-3 border-2 border-[#E8E4DB] text-neutral-700 rounded-xl font-medium hover:bg-[#E8E4DB] transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+              </svg>
+              {t(translations.cards.openMaps, lang)}
+            </a>
+          )}
         </div>
       </div>
     </div>

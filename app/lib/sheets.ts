@@ -22,7 +22,8 @@ async function fetchSheet<T>(sheetName: string): Promise<T[]> {
   const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}&cb=${Date.now()}`;
 
   const res = await fetch(url, {
-    next: { tags: ["sheets"] }, // Cache permanen, hanya di-revalidate oleh Webhook
+    cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
+    next: process.env.NODE_ENV === "development" ? undefined : { tags: ["sheets"] },
   });
 
   if (!res.ok) {

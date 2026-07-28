@@ -36,11 +36,22 @@ async function fetchSheet<T>(sheetName: string): Promise<T[]> {
     header: true,
     skipEmptyLines: true,
     transformHeader: (header: string) => {
-      const h = header.trim().toLowerCase();
-      // Menormalkan header yang mungkin ditulis "tampil_di_beranda (Ya/Tidak)" atau ada spasi/enter
-      if (h.includes("tampil_di_beranda")) return "tampil_di_beranda";
-      if (h.includes("no_whatsapp")) return "no_whatsapp";
-      if (h.includes("link_instagram")) return "link_instagram";
+      // Hapus semua karakter non-printable, whitespace ganda, dan lowercase-kan
+      const h = header.replace(/[\r\n\t]+/g, " ").trim().toLowerCase().replace(/\s+/g, " ");
+
+      // Normalkan header yang mungkin punya karakter ekstra dari Google Sheets Tables
+      if (h.includes("nama_wisata")) return "nama_wisata";
+      if (h.includes("nama_penginapan")) return "nama_penginapan";
+      if (h.includes("nama_warung") || h.includes("nama_kuliner")) return "nama_warung";
+      if (h.includes("deskripsi_id") || h.includes("bahasa indonesia")) return "deskripsi_id";
+      if (h.includes("deskripsi_en") || h.includes("bahasa inggris")) return "deskripsi_en";
+      if (h.includes("harga")) return "harga";
+      if (h.includes("jam_operasional") || h.includes("jam operasional")) return "jam_operasional";
+      if (h.includes("no_whatsapp") || h.includes("whatsapp")) return "no_whatsapp";
+      if (h.includes("link_gmaps") || h.includes("google maps") || h.includes("gmaps")) return "link_gmaps";
+      if (h.includes("link_instagram") || h.includes("instagram")) return "link_instagram";
+      if (h.includes("link_gambar") || h.includes("gambar") || h.includes("foto")) return "link_gambar";
+      if (h.includes("tampil_di_beranda") || h.includes("tampil")) return "tampil_di_beranda";
       return header.trim();
     },
   });
@@ -48,10 +59,9 @@ async function fetchSheet<T>(sheetName: string): Promise<T[]> {
   if (data.length === 0) {
     console.warn(`[sheets] Data dari tab "${sheetName}" kosong.`);
   } else {
-    // Debug log to see the parsed headers from the first row
-    if (sheetName === "Wisata") {
-      console.log("[DEBUG sheets] Parsed Row 0:", data[0]);
-    }
+    // Debug log — tampilkan parsed headers dari baris pertama
+    console.log(`[DEBUG sheets] Tab "${sheetName}" Row 0 keys:`, Object.keys(data[0] as object));
+    console.log(`[DEBUG sheets] Tab "${sheetName}" Row 0:`, data[0]);
   }
 
   return data;

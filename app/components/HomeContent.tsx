@@ -139,11 +139,17 @@ export default function HomeContent({
           </div>
 
           {/* Cards */}
-          <div className="flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8">
-            {destinations.map((dest, idx) => (
-              <DestinationCard key={idx} dest={dest} lang={lang} />
-            ))}
-          </div>
+          {destinations.length > 0 ? (
+            <div className="flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8">
+              {destinations.map((dest, idx) => (
+                <DestinationCard key={idx} dest={dest} lang={lang} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16 border-2 border-dashed border-neutral-200 rounded-2xl">
+              <p className="text-neutral-400 text-sm">{t(translations.sections.emptyState, lang)}</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -161,11 +167,17 @@ export default function HomeContent({
           </div>
 
           {/* Cards */}
-          <div className="flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8">
-            {accommodations.map((stay, idx) => (
-              <AccommodationCard key={idx} stay={stay} lang={lang} />
-            ))}
-          </div>
+          {accommodations.length > 0 ? (
+            <div className="flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8">
+              {accommodations.map((stay, idx) => (
+                <AccommodationCard key={idx} stay={stay} lang={lang} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16 border-2 border-dashed border-neutral-200 rounded-2xl">
+              <p className="text-neutral-400 text-sm">{t(translations.sections.emptyState, lang)}</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -186,11 +198,17 @@ export default function HomeContent({
           </div>
 
           {/* Cards */}
-          <div className="flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8">
-            {kuliner.map((item, idx) => (
-              <KulinerCard key={idx} item={item} lang={lang} />
-            ))}
-          </div>
+          {kuliner.length > 0 ? (
+            <div className="flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8">
+              {kuliner.map((item, idx) => (
+                <KulinerCard key={idx} item={item} lang={lang} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16 border-2 border-dashed border-neutral-200 rounded-2xl">
+              <p className="text-neutral-400 text-sm">{t(translations.sections.emptyState, lang)}</p>
+            </div>
+          )}
         </div>
       </section>
 

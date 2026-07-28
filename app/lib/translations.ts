@@ -74,6 +74,10 @@ const translations = {
       id: "Temukan semua destinasi wisata, penginapan, dan kuliner dalam satu peta interaktif.",
       en: "Find all tourist destinations, homestays, and culinary spots in one interactive map.",
     },
+    emptyState: {
+      id: "Data tidak ditemukan.",
+      en: "No data found.",
+    },
   },
 
   // ===== Card Buttons =====

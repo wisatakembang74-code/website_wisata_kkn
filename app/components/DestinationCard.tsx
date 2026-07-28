@@ -4,18 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Wisata } from "@/app/types";
-import { getValidImg, formatInstagramUrl } from "@/app/lib/utils";
+import { getValidImg, formatInstagramUrl, formatExternalUrl } from "@/app/lib/utils";
 import translations, { t, type Lang } from "@/app/lib/translations";
 
-function isValidLink(val?: string | null): boolean {
-  if (!val) return false;
-  const s = val.trim();
-  if (s === "" || s === "(kosong)" || s === "-" || s === "#") return false;
-  return s.startsWith("http://") || s.startsWith("https://");
-}
-
 export default function DestinationCard({ dest, lang }: { dest: Wisata; lang: Lang }) {
-  const hasGmaps = isValidLink(dest.link_gmaps);
+  const gmapsUrl = formatExternalUrl(dest.link_gmaps);
   const instagramUrl = formatInstagramUrl(dest.link_instagram);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -119,9 +112,9 @@ export default function DestinationCard({ dest, lang }: { dest: Wisata; lang: La
 
         {/* Action Buttons */}
         <div className="mt-4">
-          {hasGmaps && (
+          {gmapsUrl && (
             <a
-              href={dest.link_gmaps}
+              href={gmapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex justify-center w-full items-center gap-2 px-5 py-3 border-2 border-[#E8E4DB] text-neutral-700 rounded-xl font-medium hover:bg-[#E8E4DB] transition-colors"

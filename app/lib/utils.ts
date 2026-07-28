@@ -52,3 +52,21 @@ export function formatInstagramUrl(input?: string | null): string | null {
   const username = s.startsWith("@") ? s.substring(1) : s;
   return `https://instagram.com/${username}`;
 }
+
+/**
+ * Memastikan URL external valid dengan menambahkan https:// jika pengguna lupa memasukkannya
+ * dari input Google Sheets.
+ */
+export function formatExternalUrl(input?: string | null): string | null {
+  if (!input) return null;
+  const s = input.trim();
+  if (s === "" || s === "(kosong)" || s === "-" || s === "#") return null;
+  
+  if (s.startsWith("http://") || s.startsWith("https://")) {
+    return s;
+  }
+  
+  // Jika pengguna hanya mengetik "google.com/maps/..."
+  return `https://${s}`;
+}
+

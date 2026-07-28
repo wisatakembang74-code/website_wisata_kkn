@@ -4,54 +4,46 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Kuliner } from "@/app/types";
-import { getValidImg, formatInstagramUrl } from "@/app/lib/utils";
+import { getValidImg, formatInstagramUrl, formatExternalUrl } from "@/app/lib/utils";
 import translations, { t, type Lang } from "@/app/lib/translations";
 
-function isValidLink(val?: string | null): boolean {
-  if (!val) return false;
-  const s = val.trim();
-  if (s === "" || s === "(kosong)" || s === "-" || s === "#") return false;
-  return s.startsWith("http://") || s.startsWith("https://");
-}
-
 export default function KulinerCard({ item, lang }: { item: Kuliner; lang: Lang }) {
-  const hasGmaps = isValidLink(item.link_gmaps);
+  const gmapsUrl = formatExternalUrl(item.link_gmaps);
   const instagramUrl = formatInstagramUrl(item.link_instagram);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const hasDesc = lang === "id"
+  const hasDescText = lang === "id"
     ? item.deskripsi_id && item.deskripsi_id !== "(kosong)" && item.deskripsi_id !== "-"
     : item.deskripsi_en && item.deskripsi_en !== "(kosong)" && item.deskripsi_en !== "-";
   const hasJam = item.jam_operasional && item.jam_operasional !== "(kosong)" && item.jam_operasional !== "-";
-  const hasDetails = hasDesc || hasJam || !!instagramUrl;
+  const hasDesc = hasDescText || hasJam || !!instagramUrl;
 
   return (
     <div className="w-[85vw] sm:w-[360px] shrink-0 snap-center group bg-[#FDFBF7] rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col border border-[#E8E4DB]">
-      {/* Image with Price Badge */}
-      <div className="relative h-80 overflow-hidden">
+      {/* Image with Title Overlay */}
+      <div className="relative h-64 overflow-hidden">
         <Image
           src={getValidImg(item.link_gambar, "/images/food-placeholder.png")}
           alt={item.nama_warung || "Gambar Kuliner"}
           fill
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        {/* Glassmorphism Price Badge — Top Right */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute bottom-4 left-6 text-white text-2xl font-semibold drop-shadow-md">
+          {item.nama_warung}
+        </div>
         {item.harga && item.harga !== "(kosong)" && item.harga !== "-" && (
-          <div className="absolute top-6 right-6 backdrop-blur-md bg-white/70 px-4 py-2 rounded-2xl rounded-tr-sm text-neutral-900 text-xs font-bold tracking-wider uppercase shadow-lg">
+          <div className="absolute top-4 right-4 backdrop-blur-md bg-white/70 px-3 py-1 rounded-2xl text-neutral-900 text-xs font-bold tracking-wider uppercase shadow-sm">
             {item.harga}
           </div>
         )}
       </div>
 
       {/* Content */}
-      <div className="p-8 flex flex-col flex-grow">
-        <h3 className="text-2xl font-semibold text-neutral-900 mb-3">
-          {item.nama_warung}
-        </h3>
-
+      <div className="p-6 flex flex-col flex-grow">
         {/* Toggle Detail Button */}
-        {hasDetails && (
+        {hasDesc && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             className="flex items-center gap-2 text-sm font-medium text-primary-700 hover:text-primary-800 transition-colors mb-4 cursor-pointer"
@@ -82,8 +74,8 @@ export default function KulinerCard({ item, lang }: { item: Kuliner; lang: Lang 
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              {hasDesc && (
-                <p className="text-neutral-600 leading-relaxed mb-4 text-lg">
+              {hasDescText && (
+                <p className="text-neutral-600 leading-relaxed mb-4">
                   {lang === "id" ? item.deskripsi_id : item.deskripsi_en}
                 </p>
               )}
@@ -112,17 +104,16 @@ export default function KulinerCard({ item, lang }: { item: Kuliner; lang: Lang 
           )}
         </AnimatePresence>
 
-        {/* Spacer */}
         <div className="flex-grow" />
 
-        {/* Action Buttons — Always Visible */}
-        <div className="flex flex-col gap-3 mt-auto">
-          {hasGmaps && (
+        {/* Action Buttons */}
+        <div className="mt-4">
+          {gmapsUrl && (
             <a
-              href={item.link_gmaps}
+              href={gmapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-4 border-2 border-[#E8E4DB] text-neutral-700 rounded-[1.5rem] font-semibold hover:bg-[#E8E4DB] transition-colors text-center inline-flex items-center justify-center gap-2"
+              className="inline-flex justify-center w-full items-center gap-2 px-5 py-3 border-2 border-[#E8E4DB] text-neutral-700 rounded-xl font-medium hover:bg-[#E8E4DB] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />

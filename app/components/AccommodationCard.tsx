@@ -4,15 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Penginapan } from "@/app/types";
-import { getValidImg, formatInstagramUrl } from "@/app/lib/utils";
+import { getValidImg, formatInstagramUrl, formatExternalUrl } from "@/app/lib/utils";
 import translations, { t, tWaBooking, type Lang } from "@/app/lib/translations";
-
-function isValidLink(val?: string | null): boolean {
-  if (!val) return false;
-  const s = val.trim();
-  if (s === "" || s === "(kosong)" || s === "-" || s === "#") return false;
-  return s.startsWith("http://") || s.startsWith("https://");
-}
 
 function getValidWa(val?: string | null): string | null {
   if (!val) return null;
@@ -29,7 +22,7 @@ function getValidWa(val?: string | null): string | null {
 }
 
 export default function AccommodationCard({ stay, lang }: { stay: Penginapan; lang: Lang }) {
-  const hasGmaps = isValidLink(stay.link_gmaps);
+  const gmapsUrl = formatExternalUrl(stay.link_gmaps);
   const instagramUrl = formatInstagramUrl(stay.link_instagram);
   const validWa = getValidWa(stay.no_whatsapp);
   const waLink = validWa
@@ -146,9 +139,9 @@ export default function AccommodationCard({ stay, lang }: { stay: Penginapan; la
           )}
 
           {/* Google Maps Button */}
-          {hasGmaps && (
+          {gmapsUrl && (
             <a
-              href={stay.link_gmaps}
+              href={gmapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-3 border-2 border-[#E8E4DB] text-neutral-700 rounded-xl font-medium hover:bg-[#E8E4DB] transition-colors"

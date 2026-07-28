@@ -11,6 +11,7 @@ export interface Wisata {
   jam_operasional: string;
   link_gmaps: string;
   link_gambar: string;
+  link_instagram?: string;
   tampil_di_beranda: "Ya" | "Tidak";
 }
 
@@ -23,6 +24,7 @@ export interface Penginapan {
   no_whatsapp: string;
   link_gmaps: string;
   link_gambar: string;
+  link_instagram?: string;
   tampil_di_beranda: "Ya" | "Tidak";
 }
 
@@ -35,6 +37,7 @@ export interface Kuliner {
   jam_operasional: string;
   link_gmaps: string;
   link_gambar: string;
+  link_instagram?: string;
   tampil_di_beranda: "Ya" | "Tidak";
 }
 

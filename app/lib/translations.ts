@@ -68,6 +68,12 @@ const translations = {
       id: "Nikmati cita rasa autentik desa kami, dimasak dengan bahan-bahan segar dan resep turun-temurun yang telah diwariskan selama berabad-abad.",
       en: "Savor the authentic taste of our village, prepared with fresh ingredients and centuries-old recipes passed down through generations.",
     },
+    mapsLabel: { id: "Temukan Kami", en: "Find Us" },
+    mapsHeading: { id: "Lokasi di Peta", en: "Location on Map" },
+    mapsSubtitle: {
+      id: "Temukan semua destinasi wisata, penginapan, dan kuliner dalam satu peta interaktif.",
+      en: "Find all tourist destinations, homestays, and culinary spots in one interactive map.",
+    },
   },
 
   // ===== Card Buttons =====
@@ -75,6 +81,7 @@ const translations = {
     viewDetails: { id: "Lihat Detail", en: "View Details" },
     hideDetails: { id: "Sembunyikan", en: "Hide Details" },
     openMaps: { id: "Lihat di Google Maps", en: "View on Google Maps" },
+    openInstagram: { id: "Kunjungi Instagram", en: "Visit Instagram" },
     bookWhatsApp: {
       id: "Hubungi via WhatsApp",
       en: "Contact via WhatsApp",

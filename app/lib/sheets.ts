@@ -40,6 +40,7 @@ async function fetchSheet<T>(sheetName: string): Promise<T[]> {
       // Menormalkan header yang mungkin ditulis "tampil_di_beranda (Ya/Tidak)" atau ada spasi/enter
       if (h.includes("tampil_di_beranda")) return "tampil_di_beranda";
       if (h.includes("no_whatsapp")) return "no_whatsapp";
+      if (h.includes("link_instagram")) return "link_instagram";
       return header.trim();
     },
   });

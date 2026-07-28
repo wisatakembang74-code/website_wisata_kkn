@@ -193,6 +193,37 @@ export default function HomeContent({
           </div>
         </div>
       </section>
+
+      {/* ===== LOKASI PETA (GOOGLE MY MAPS) ===== */}
+      <section id="peta" className="py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          {/* Heading */}
+          <div className="text-center mb-14">
+            <span className="section-label">
+              {t(translations.sections.mapsLabel, lang)}
+            </span>
+            <h2 className="section-heading mt-2 italic">
+              {t(translations.sections.mapsHeading, lang)}
+            </h2>
+            <p className="mt-3 text-sm text-neutral-500 max-w-lg mx-auto leading-relaxed">
+              {t(translations.sections.mapsSubtitle, lang)}
+            </p>
+          </div>
+
+          {/* Map Iframe */}
+          <div className="w-full h-[350px] md:h-[500px] rounded-2xl overflow-hidden border border-neutral-200 shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/d/embed?mid=18poJ0mLBx2Bo2QAcwVkABkvqlSzT1HY"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              title="Peta Desa Wisata Nanggulan"
+            ></iframe>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

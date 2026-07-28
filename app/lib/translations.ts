@@ -82,8 +82,6 @@ const translations = {
 
   // ===== Card Buttons =====
   cards: {
-    viewDetails: { id: "Lihat Detail", en: "View Details" },
-    hideDetails: { id: "Sembunyikan", en: "Hide Details" },
     openMaps: { id: "Lihat di Google Maps", en: "View on Google Maps" },
     openInstagram: { id: "Kunjungi Instagram", en: "Visit Instagram" },
     bookWhatsApp: {

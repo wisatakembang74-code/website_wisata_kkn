@@ -100,26 +100,7 @@ export default function HomeContent({
                 <p>{t(translations.heritage.body1, lang)}</p>
                 <p>{t(translations.heritage.body2, lang)}</p>
               </div>
-              <Link
-                href="/#destinations"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-neutral-800 hover:text-primary-600 transition-colors group"
-              >
-                {t(translations.heritage.cta, lang)}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                  />
-                </svg>
-              </Link>
+
             </div>
           </div>
         </div>

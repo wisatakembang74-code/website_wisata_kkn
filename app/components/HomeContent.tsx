@@ -78,7 +78,7 @@ export default function HomeContent({
             {/* Image */}
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image
-                src="/images/about-village.png"
+                src="/images/IMG_5553.HEIC"
                 alt="Keindahan Wisata Kembang"
                 fill
                 className="object-cover"

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/app/context/LanguageContext";
 import translations, { t } from "@/app/lib/translations";
@@ -21,9 +21,16 @@ export default function Navbar() {
     { href: "/#kuliner", label: t(translations.nav.kuliner, lang) },
   ];
 
+  // Ref to temporarily ignore scroll events after a nav click
+  const isClickScrolling = useRef(false);
+  const clickScrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // Skip section detection while a click-initiated scroll is in progress
+      if (isClickScrolling.current) return;
 
       // 1. If at the very top, it's Home
       if (window.scrollY < 100) {
@@ -74,7 +81,10 @@ export default function Navbar() {
       }
     }, 0);
     
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (clickScrollTimer.current) clearTimeout(clickScrollTimer.current);
+    };
   }, []);
 
   // On homepage, navbar is transparent until scrolled
@@ -109,7 +119,12 @@ export default function Navbar() {
               <li key={link.href} className="relative">
                 <Link
                   href={link.href}
-                  onClick={() => setActiveSection(link.href)}
+                  onClick={() => {
+                    setActiveSection(link.href);
+                    isClickScrolling.current = true;
+                    if (clickScrollTimer.current) clearTimeout(clickScrollTimer.current);
+                    clickScrollTimer.current = setTimeout(() => { isClickScrolling.current = false; }, 800);
+                  }}
                   className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 z-10 block ${
                     showSolid
                       ? isActive
@@ -196,6 +211,9 @@ export default function Navbar() {
                   onClick={() => {
                     setActiveSection(link.href);
                     setMobileOpen(false);
+                    isClickScrolling.current = true;
+                    if (clickScrollTimer.current) clearTimeout(clickScrollTimer.current);
+                    clickScrollTimer.current = setTimeout(() => { isClickScrolling.current = false; }, 800);
                   }}
                   className={`block rounded-lg px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
                     isActive

@@ -78,7 +78,7 @@ export default function HomeContent({
             {/* Image */}
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image
-                src="/images/about-village.png"
+                src="/images/IMG_5322.png"
                 alt="Keindahan Wisata Kembang"
                 fill
                 className="object-cover"
@@ -147,7 +147,9 @@ export default function HomeContent({
             </div>
           ) : (
             <div className="text-center py-16 border-2 border-dashed border-neutral-200 rounded-2xl">
-              <p className="text-neutral-400 text-sm">{t(translations.sections.emptyState, lang)}</p>
+              <p className="text-neutral-400 text-sm">
+                {t(translations.sections.emptyState, lang)}
+              </p>
             </div>
           )}
         </div>
@@ -175,7 +177,9 @@ export default function HomeContent({
             </div>
           ) : (
             <div className="text-center py-16 border-2 border-dashed border-neutral-200 rounded-2xl">
-              <p className="text-neutral-400 text-sm">{t(translations.sections.emptyState, lang)}</p>
+              <p className="text-neutral-400 text-sm">
+                {t(translations.sections.emptyState, lang)}
+              </p>
             </div>
           )}
         </div>
@@ -206,7 +210,9 @@ export default function HomeContent({
             </div>
           ) : (
             <div className="text-center py-16 border-2 border-dashed border-neutral-200 rounded-2xl">
-              <p className="text-neutral-400 text-sm">{t(translations.sections.emptyState, lang)}</p>
+              <p className="text-neutral-400 text-sm">
+                {t(translations.sections.emptyState, lang)}
+              </p>
             </div>
           )}
         </div>

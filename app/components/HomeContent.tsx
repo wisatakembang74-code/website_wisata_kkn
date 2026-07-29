@@ -28,7 +28,7 @@ export default function HomeContent({
       <section className="relative h-[85vh] min-h-[540px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <Image
-          src="/images/hero-bg.png"
+          src="/images/IMG_5553.png"
           alt="Pemandangan Wisata Kembang"
           fill
           className="object-cover"
@@ -78,7 +78,7 @@ export default function HomeContent({
             {/* Image */}
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image
-                src="/images/IMG_5553.png"
+                src="/images/about-village.png"
                 alt="Keindahan Wisata Kembang"
                 fill
                 className="object-cover"

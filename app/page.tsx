@@ -98,7 +98,7 @@ export default async function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "TouristDestination",
-            "name": "Desa Wisata Nanggulan",
+            "name": "Wisata Kembang Nanggulan",
             "description":
               "Destinasi wisata alam, kuliner otentik, dan penginapan nyaman di Desa Nanggulan, Kulon Progo, Yogyakarta.",
             // TODO: Ganti dengan domain asli setelah deploy
@@ -124,7 +124,7 @@ export default async function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "Desa Wisata Nanggulan",
+            "name": "Wisata Kembang Nanggulan",
             "description":
               "Platform digital resmi Desa Nanggulan. Temukan destinasi wisata alam, kuliner otentik, homestay, dan layanan masyarakat desa.",
             // TODO: Ganti dengan domain asli setelah deploy

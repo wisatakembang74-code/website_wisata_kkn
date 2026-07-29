@@ -29,7 +29,7 @@ export default function HomeContent({
         {/* Background Image */}
         <Image
           src="/images/hero-bg.png"
-          alt="Pemandangan Desa Wisata"
+          alt="Pemandangan Wisata Kembang"
           fill
           className="object-cover"
           priority
@@ -79,7 +79,7 @@ export default function HomeContent({
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image
                 src="/images/about-village.png"
-                alt="Keindahan Desa Wisata"
+                alt="Keindahan Wisata Kembang"
                 fill
                 className="object-cover"
                 quality={85}
@@ -237,7 +237,7 @@ export default function HomeContent({
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              title="Peta Desa Wisata Nanggulan"
+              title="Peta Wisata Kembang Nanggulan"
             ></iframe>
           </div>
         </div>

@@ -98,8 +98,8 @@ const translations = {
       en: "Authentic village experiences, sustainable tourism, and unforgettable memories.",
     },
     copyright: {
-      id: "Desa Wisata. Seluruh hak dilindungi.",
-      en: "Desa Wisata. All rights reserved.",
+      id: "Wisata Kembang. Seluruh hak dilindungi.",
+      en: "Wisata Kembang. All rights reserved.",
     },
     villageAddress: { id: "Alamat Desa", en: "Village Address" },
     contactInfo: { id: "Info Kontak", en: "Contact Info" },

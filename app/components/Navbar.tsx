@@ -97,7 +97,7 @@ export default function Navbar() {
               showSolid ? "text-neutral-900" : "text-white"
             }`}
           >
-            Desa Wisata
+            Wisata Kembang
           </span>
         </Link>
 

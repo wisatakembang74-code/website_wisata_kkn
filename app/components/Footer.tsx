@@ -21,7 +21,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-3">
             <h3 className="text-lg font-bold text-white tracking-tight">
-              Desa Wisata
+              Wisata Kembang
             </h3>
             <p className="text-sm leading-relaxed text-neutral-500 max-w-xs">
               {t(translations.footer.tagline, lang)}

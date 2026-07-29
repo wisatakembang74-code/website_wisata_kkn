@@ -20,21 +20,21 @@ export const metadata: Metadata = {
   description:
     "Platform digital resmi Desa Nanggulan. Temukan destinasi wisata alam, kuliner otentik, homestay, dan layanan masyarakat desa. Pesan langsung via WhatsApp.",
   keywords: [
-    "desa wisata nanggulan",
+    "wisata kembang nanggulan",
     "wisata kulon progo",
     "wisata jogja",
     "kuliner nanggulan",
     "homestay nanggulan",
     "air terjun kedung pedut",
-    "desa wisata jogja",
+    "wisata kembang jogja",
     "wisata alam yogyakarta",
   ],
-  authors: [{ name: "Desa Wisata Nanggulan" }],
+  authors: [{ name: "Wisata Kembang Nanggulan" }],
   openGraph: {
     type: "website",
     locale: "id_ID",
-    siteName: "Desa Wisata Nanggulan",
-    title: "Desa Wisata Nanggulan — Pesona Alam & Kuliner Tradisional Jogja",
+    siteName: "Wisata Kembang Nanggulan",
+    title: "Wisata Kembang Nanggulan — Pesona Alam & Kuliner Tradisional Jogja",
     description:
       "Jelajahi keindahan alam, kuliner otentik, dan penginapan nyaman di Desa Nanggulan, Kulon Progo, Yogyakarta. Pesan langsung via WhatsApp!",
     images: [
@@ -42,13 +42,13 @@ export const metadata: Metadata = {
         url: "/images/hero-bg.png",
         width: 1200,
         height: 630,
-        alt: "Pemandangan alam Desa Wisata Nanggulan",
+        alt: "Pemandangan alam Wisata Kembang Nanggulan",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Desa Wisata Nanggulan — Pesona Alam & Kuliner Tradisional Jogja",
+    title: "Wisata Kembang Nanggulan — Pesona Alam & Kuliner Tradisional Jogja",
     description:
       "Jelajahi keindahan alam, kuliner otentik, dan penginapan nyaman di Desa Nanggulan, Kulon Progo, Yogyakarta.",
     images: ["/images/hero-bg.png"],

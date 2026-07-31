@@ -16,6 +16,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://website-wisata-kembang.vercel.app"),
   title: "Wisata Desa Nanggulan — Jelajahi Keindahan Alam & Kuliner Otentik",
   description:
     "Platform digital resmi Desa Nanggulan. Temukan destinasi wisata alam, kuliner otentik, homestay, dan layanan masyarakat desa. Pesan langsung via WhatsApp.",
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
       "Jelajahi keindahan alam, kuliner otentik, dan penginapan nyaman di Desa Nanggulan, Kulon Progo, Yogyakarta. Pesan langsung via WhatsApp!",
     images: [
       {
-        url: "/images/hero-bg.png",
+        url: "/images/IMG_5553.png",
         width: 1200,
         height: 630,
         alt: "Pemandangan alam Wisata Kembang Nanggulan",
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     title: "Wisata Kembang Nanggulan — Pesona Alam & Kuliner Tradisional Jogja",
     description:
       "Jelajahi keindahan alam, kuliner otentik, dan penginapan nyaman di Desa Nanggulan, Kulon Progo, Yogyakarta.",
-    images: ["/images/hero-bg.png"],
+    images: ["/images/IMG_5553.png"],
   },
   robots: {
     index: true,

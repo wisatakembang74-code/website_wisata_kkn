@@ -34,6 +34,7 @@ export default function HomeContent({
           className="object-cover"
           priority
           quality={90}
+          // unoptimized={true}
         />
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/40" />

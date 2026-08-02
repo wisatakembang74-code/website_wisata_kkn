@@ -30,7 +30,7 @@
 
 // URL website Anda yang sudah di-deploy di Vercel
 // Contoh: "https://wisata-nanggulan.vercel.app"
-const WEBSITE_URL = "https://YOUR-VERCEL-DOMAIN.vercel.app";
+const WEBSITE_URL = "https://website-wisata-kembang.vercel.app/";
 
 // Token rahasia yang sama dengan REVALIDATE_TOKEN di .env.local
 const SECRET_TOKEN = "wisata-nanggulan-revalidate-2026";

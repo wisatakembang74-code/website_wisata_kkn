@@ -28,7 +28,7 @@ export default function HomeContent({
       <section className="relative h-[85vh] min-h-[540px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <Image
-          src="/images/IMG_5553.png"
+          src="/images/IMG_5820.png"
           alt="Pemandangan Wisata Kembang"
           fill
           className="object-cover"
@@ -100,7 +100,6 @@ export default function HomeContent({
                 <p>{t(translations.heritage.body1, lang)}</p>
                 <p>{t(translations.heritage.body2, lang)}</p>
               </div>
-
             </div>
           </div>
         </div>

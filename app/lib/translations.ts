@@ -44,7 +44,6 @@ const translations = {
       id: "Setiap jalan setapak mengarah ke sebuah cerita, setiap hidangan adalah perayaan hasil panen lokal, dan setiap matahari terbenam di atas sawah terasering mengingatkan kita akan keindahan sederhana dari kehidupan.",
       en: "Every path leads to a story, every meal is a celebration of local harvest, and every sunset over the rice terraces reminds us of the simple beauty of existence.",
     },
-    cta: { id: "Baca Kisah Kami", en: "Read Our Story" },
   },
 
   // ===== Section Headings =====

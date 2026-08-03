@@ -9,7 +9,7 @@
 const WEBSITE_URL = "https://website-wisata-kembang.vercel.app/";
 
 // Token rahasia yang sama dengan REVALIDATE_TOKEN di .env.local
-const SECRET_TOKEN = "wisata-nanggulan-revalidate-2026";
+const SECRET_TOKEN = "wisata-kembang-revalidate-2026";
 // ===============================
 
 

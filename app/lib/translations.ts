@@ -90,16 +90,17 @@ const translations = {
     perNight: { id: "/ malam", en: "/ night" },
   },
 
-  // ===== Footer =====
   footer: {
     tagline: {
-      id: "Pengalaman desa autentik, wisata berkelanjutan, dan kenangan tak terlupakan.",
-      en: "Authentic village experiences, sustainable tourism, and unforgettable memories.",
+      id: "Pengalaman desa autentik, wisata berkelanjutan, dan kenangan tak terlupakan yang berakar dari alam.",
+      en: "Authentic village experiences, sustainable tourism, and unforgettable memories deeply rooted in nature.",
     },
     copyright: {
       id: "Wisata Kembang. Seluruh hak dilindungi.",
       en: "Wisata Kembang. All rights reserved.",
     },
+    visitUs: { id: "Kunjungi Kami", en: "Visit Us" },
+    explore: { id: "Jelajahi", en: "Explore" },
     villageAddress: { id: "Alamat Desa", en: "Village Address" },
     contactInfo: { id: "Info Kontak", en: "Contact Info" },
     privacyPolicy: { id: "Kebijakan Privasi", en: "Privacy Policy" },

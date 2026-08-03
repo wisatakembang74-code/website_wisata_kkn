@@ -12,7 +12,7 @@ const translations = {
     home: { id: "Beranda", en: "Home" },
     destinations: { id: "Destinasi", en: "Destinations" },
     homestays: { id: "Penginapan", en: "Homestays" },
-    kuliner: { id: "Kuliner", en: "Kuliner" },
+    kuliner: { id: "Kuliner", en: "Culinary" },
     panduan: { id: "Panduan", en: "Guide" },
   },
 
@@ -59,7 +59,7 @@ const translations = {
       id: "Pilihan Menginap",
       en: "Where to Stay",
     },
-    kulinerLabel: { id: "Kuliner", en: "Kuliner" },
+    kulinerLabel: { id: "Kuliner", en: "Culinary" },
     kulinerHeading: {
       id: "Cicipi Warisan Rasa",
       en: "Taste the Heritage",

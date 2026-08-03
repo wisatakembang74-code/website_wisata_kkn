@@ -1,44 +1,81 @@
 /**
  * ============================================================
- * Google Apps Script — Webhook Revalidation
- * ============================================================
- *
- * CARA PAKAI:
- * 1. Buka Google Sheets Anda.
- * 2. Klik menu "Extensions" > "Apps Script".
- * 3. Hapus semua kode default di editor.
- * 4. Salin-tempel (copy-paste) SELURUH kode di bawah ini.
- * 5. Ganti variabel WEBSITE_URL dan SECRET_TOKEN di bawah
- *    dengan nilai yang sesuai.
- * 6. Klik tombol "Save" (ikon disket).
- * 7. Klik menu "Triggers" (ikon jam) di sidebar kiri.
- * 8. Klik "+ Add Trigger" di pojok kanan bawah.
- * 9. Atur konfigurasi:
- *    - Choose which function to run: onSheetEdit
- *    - Choose which deployment should run: Head
- *    - Select event source: From spreadsheet
- *    - Select event type: On edit
- * 10. Klik "Save", lalu izinkan akses jika diminta.
- *
- * Setelah ini, setiap kali Anda mengedit sel apa pun di Sheets,
- * skrip ini akan otomatis mengirim sinyal ke website Anda
- * agar datanya diperbarui secara instan.
+ * Google Apps Script — Form Handler & Webhook Revalidation
  * ============================================================
  */
 
-// ===== KONFIGURASI — Ganti dengan nilai Anda =====
-
+// ===== KONFIGURASI WEBHOOK =====
 // URL website Anda yang sudah di-deploy di Vercel
-// Contoh: "https://wisata-nanggulan.vercel.app"
 const WEBSITE_URL = "https://website-wisata-kembang.vercel.app/";
 
 // Token rahasia yang sama dengan REVALIDATE_TOKEN di .env.local
 const SECRET_TOKEN = "wisata-nanggulan-revalidate-2026";
+// ===============================
 
-// ==================================================
+
+function onFormSubmit(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet();
+  var values = e.values; 
+  var kategori = values[1]; // Kolom B (Kategori)
+  
+  if (kategori === "Wisata") {
+    var target = sheet.getSheetByName("Wisata");
+    
+    var nama = values[2];       // Kolom C
+    var desc_id = values[3];    // Kolom D
+    var desc_en = values[4];    // Kolom E
+    var harga = values[5];      // Kolom F
+    var jam = values[6];        // Kolom G
+    var maps = values[7];       // Kolom H
+    var instagram = values[8];  // Kolom I
+    var gambar = values[9];     // Kolom J
+    
+    // Urutan Tab Wisata: 
+    // A(Nama), B(Desc_ID), C(Desc_EN), D(Harga), E(Jam), F(Maps), G(Gambar), H(Instagram), I(Tampil)
+    target.appendRow([nama, desc_id, desc_en, harga, jam, maps, gambar, instagram, "Ya"]);
+  } 
+  
+  else if (kategori === "Kuliner") {
+    var target = sheet.getSheetByName("Kuliner");
+    
+    var nama = values[10];      // Kolom K
+    var desc_id = values[11];   // Kolom L
+    var desc_en = values[12];   // Kolom M
+    var harga = values[13];     // Kolom N
+    var jam = values[14];       // Kolom O
+    var instagram = values[15]; // Kolom P
+    var maps = values[16];      // Kolom Q
+    var gambar = values[17];    // Kolom R
+    
+    // Urutan Tab Kuliner:
+    // A(Nama), B(Desc_ID), C(Desc_EN), D(Harga), E(Jam), F(Instagram), G(Gambar), H(Maps), I(Tampil)
+    target.appendRow([nama, desc_id, desc_en, harga, jam, instagram, gambar, maps, "Ya"]);
+  }
+
+  else if (kategori === "Penginapan") {
+    var target = sheet.getSheetByName("Penginapan");
+    
+    var nama = values[18];      // Kolom S
+    var desc_id = values[19];   // Kolom T
+    var desc_en = values[20];   // Kolom U
+    var wa = values[21];        // Kolom V
+    var maps = values[22];      // Kolom W
+    var instagram = values[23]; // Kolom X
+    var gambar = values[24];    // Kolom Y
+    var harga = values[25];     // Kolom Z 
+    
+    // Urutan Tab Penginapan:
+    // A(Nama), B(Desc_ID), C(Desc_EN), D(Harga), E(WA), F(Maps), G(Gambar), H(Instagram), I(Tampil)
+    target.appendRow([nama, desc_id, desc_en, harga, wa, maps, gambar, instagram, "Ya"]);
+  }
+
+  // PANGGIL WEBHOOK KE VERCEL SETELAH DATA DITAMBAHKAN!
+  onSheetEdit(null);
+}
 
 /**
- * Fungsi yang dipanggil setiap kali ada perubahan di Sheets.
+ * Fungsi yang dipanggil setiap kali ada perubahan manual di Sheets,
+ * ATAU dipanggil oleh fungsi onFormSubmit di atas.
  * Mengirim POST request ke API revalidate website.
  */
 function onSheetEdit(e) {

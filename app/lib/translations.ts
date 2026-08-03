@@ -105,6 +105,21 @@ const translations = {
     contactInfo: { id: "Info Kontak", en: "Contact Info" },
     privacyPolicy: { id: "Kebijakan Privasi", en: "Privacy Policy" },
   },
+
+  // ===== E-Book =====
+  ebook: {
+    label: { id: "Panduan Wisata", en: "Travel Guide" },
+    heading: {
+      id: "Buku Panduan Wisata Kembang",
+      en: "Wisata Kembang Travel Guide",
+    },
+    subtitle: {
+      id: "Jelajahi panduan lengkap wisata, budaya, dan kuliner Desa Kembang dalam format buku interaktif.",
+      en: "Explore the complete guide to tourism, culture, and cuisine of Kembang Village in an interactive flipbook.",
+    },
+    cta: { id: "Baca Sekarang", en: "Read Now" },
+    close: { id: "Tutup", en: "Close" },
+  },
 } as const;
 
 export type Lang = "id" | "en";

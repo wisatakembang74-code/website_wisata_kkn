@@ -5,6 +5,7 @@ import Link from "next/link";
 import DestinationCard from "@/app/components/DestinationCard";
 import AccommodationCard from "@/app/components/AccommodationCard";
 import KulinerCard from "@/app/components/KulinerCard";
+import EbookBanner from "@/app/components/EbookBanner";
 import type { Wisata, Penginapan, Kuliner } from "@/app/types";
 import { useLanguage } from "@/app/context/LanguageContext";
 import translations, { t } from "@/app/lib/translations";
@@ -198,6 +199,9 @@ export default function HomeContent({
           )}
         </div>
       </section>
+
+      {/* ===== E-BOOK PANDUAN WISATA ===== */}
+      <EbookBanner />
 
       {/* ===== LOKASI PETA (GOOGLE MY MAPS) ===== */}
       <section id="peta" className="py-20 sm:py-28">

@@ -13,6 +13,7 @@ const translations = {
     destinations: { id: "Destinasi", en: "Destinations" },
     homestays: { id: "Penginapan", en: "Homestays" },
     kuliner: { id: "Kuliner", en: "Kuliner" },
+    panduan: { id: "Panduan", en: "Guide" },
   },
 
   // ===== Hero Section =====
@@ -104,6 +105,29 @@ const translations = {
     villageAddress: { id: "Alamat Desa", en: "Village Address" },
     contactInfo: { id: "Info Kontak", en: "Contact Info" },
     privacyPolicy: { id: "Kebijakan Privasi", en: "Privacy Policy" },
+  },
+
+  // ===== E-Book / Panduan =====
+  ebook: {
+    label: { id: "Panduan Wisata", en: "Travel Guide" },
+    heading: {
+      id: "Buku Panduan Wisata Kembang",
+      en: "Wisata Kembang Travel Guide",
+    },
+    subtitle: {
+      id: "Jelajahi panduan lengkap wisata, budaya, dan kuliner Desa Kembang dalam format buku interaktif.",
+      en: "Explore the complete guide to tourism, culture, and cuisine of Kembang Village in an interactive flipbook.",
+    },
+    cta: { id: "Baca Panduan", en: "Read Guide" },
+    pageTitle: {
+      id: "Panduan Wisata — Wisata Kembang",
+      en: "Travel Guide — Wisata Kembang",
+    },
+    pageDescription: {
+      id: "Buku panduan interaktif wisata, budaya, dan kuliner Desa Kembang, Nanggulan, Kulon Progo, Yogyakarta.",
+      en: "Interactive guidebook for tourism, culture, and cuisine of Kembang Village, Nanggulan, Kulon Progo, Yogyakarta.",
+    },
+    backHome: { id: "Kembali ke Beranda", en: "Back to Home" },
   },
 } as const;
 

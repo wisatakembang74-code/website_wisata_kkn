@@ -19,6 +19,7 @@ export default function Navbar() {
     { href: "/#destinations", label: t(translations.nav.destinations, lang) },
     { href: "/#accommodations", label: t(translations.nav.homestays, lang) },
     { href: "/#kuliner", label: t(translations.nav.kuliner, lang) },
+    { href: "/panduan", label: t(translations.nav.panduan, lang) },
   ];
 
   // Ref to temporarily ignore scroll events after a nav click
@@ -89,6 +90,7 @@ export default function Navbar() {
 
   // On homepage, navbar is transparent until scrolled
   const isHome = pathname === "/";
+  const isPanduan = pathname === "/panduan";
   const showSolid = scrolled || !isHome;
 
   return (
@@ -114,7 +116,7 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <ul className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.href;
+            const isActive = link.href === "/panduan" ? isPanduan : (!isPanduan && activeSection === link.href);
             return (
               <li key={link.href} className="relative">
                 <Link
@@ -203,7 +205,7 @@ export default function Navbar() {
       >
         <ul className="flex flex-col gap-1 px-5 py-4">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.href;
+            const isActive = link.href === "/panduan" ? isPanduan : (!isPanduan && activeSection === link.href);
             return (
               <li key={link.href}>
                 <Link

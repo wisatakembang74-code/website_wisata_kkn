@@ -53,8 +53,7 @@ export default function PanduanContent() {
 
         {/* E-Book Iframe */}
         <div
-          className="w-full rounded-2xl overflow-hidden shadow-xl border border-neutral-200"
-          style={{ aspectRatio: "16 / 10" }}
+          className="w-full rounded-2xl overflow-hidden shadow-xl border border-neutral-200 aspect-[3/4] sm:aspect-[4/3] md:aspect-[16/10]"
         >
           <iframe
             src="https://heyzine.com/flip-book/410b7ad435.html"

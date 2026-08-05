@@ -5,9 +5,25 @@ import Link from "next/link";
 import { useLanguage } from "@/app/context/LanguageContext";
 import translations, { t } from "@/app/lib/translations";
 
+const BOOKS = [
+  {
+    id: "lestari-wiwitan",
+    title: { id: "Lestari Wiwitan", en: "Lestari Wiwitan" },
+    url: "https://heyzine.com/flip-book/410b7ad435.html",
+  },
+  {
+    id: "sejarah-kalurahan",
+    title: { id: "Sejarah Kalurahan Kembang", en: "History of Kembang Village" },
+    url: "https://heyzine.com/flip-book/592ba0bb7c.html",
+  },
+];
+
 export default function PanduanContent() {
   const { lang } = useLanguage();
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
+
+  const activeBook = BOOKS[activeTab];
 
   return (
     <main className="min-h-screen pt-24 pb-16" style={{ backgroundColor: "#F8F6F2" }}>
@@ -64,6 +80,29 @@ export default function PanduanContent() {
           </button>
         </div>
 
+        {/* Tab Buttons */}
+        <div className="flex items-center justify-center gap-3 mb-6">
+          {BOOKS.map((book, idx) => (
+            <button
+              key={book.id}
+              onClick={() => setActiveTab(idx)}
+              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 border ${
+                activeTab === idx
+                  ? "bg-neutral-800 text-white border-neutral-800 shadow-lg"
+                  : "bg-white text-neutral-600 border-neutral-300 hover:border-neutral-400 hover:text-neutral-800"
+              }`}
+            >
+              {/* Book icon */}
+              <span className="inline-flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                </svg>
+                {t(book.title, lang)}
+              </span>
+            </button>
+          ))}
+        </div>
+
         {/* E-Book Container */}
         <div
           className={
@@ -72,6 +111,25 @@ export default function PanduanContent() {
               : "w-full rounded-2xl overflow-hidden shadow-xl border border-neutral-200 aspect-[3/4] sm:aspect-[4/3] md:aspect-[16/10]"
           }
         >
+          {/* Fullscreen Tab Switcher */}
+          {isFullscreen && (
+            <div className="absolute top-4 left-4 z-[110] flex gap-2">
+              {BOOKS.map((book, idx) => (
+                <button
+                  key={book.id}
+                  onClick={() => setActiveTab(idx)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
+                    activeTab === idx
+                      ? "bg-white text-black"
+                      : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white backdrop-blur-md"
+                  }`}
+                >
+                  {t(book.title, lang)}
+                </button>
+              ))}
+            </div>
+          )}
+
           {/* Close Button (Only visible in fullscreen) */}
           {isFullscreen && (
             <button
@@ -86,13 +144,13 @@ export default function PanduanContent() {
           )}
 
           <iframe
-            src="https://heyzine.com/flip-book/410b7ad435.html"
+            src={activeBook.url}
             width="100%"
             height="100%"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
-            title={t(translations.ebook.heading, lang)}
+            title={t(activeBook.title, lang)}
             className={isFullscreen ? "w-full h-full" : ""}
           />
         </div>

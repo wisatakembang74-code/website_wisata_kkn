@@ -31,10 +31,10 @@ export default function HomeContent({
           src="/images/IMG_5820.png"
           alt="Pemandangan Wisata Kembang"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
           quality={90}
-          // unoptimized={true}
         />
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/40" />
@@ -82,6 +82,7 @@ export default function HomeContent({
                 src="/images/IMG_5322.png"
                 alt="Keindahan Wisata Kembang"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
                 quality={85}
               />

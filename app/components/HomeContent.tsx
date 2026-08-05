@@ -121,7 +121,11 @@ export default function HomeContent({
 
           {/* Cards */}
           {destinations.length > 0 ? (
-            <div className="flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8">
+            <div className={`flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8 ${
+              destinations.length === 1 ? "justify-center" : 
+              destinations.length === 2 ? "md:justify-center" : 
+              destinations.length === 3 ? "lg:justify-center" : ""
+            }`}>
               {destinations.map((dest, idx) => (
                 <DestinationCard key={idx} dest={dest} lang={lang} />
               ))}
@@ -151,7 +155,11 @@ export default function HomeContent({
 
           {/* Cards */}
           {accommodations.length > 0 ? (
-            <div className="flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8">
+            <div className={`flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8 ${
+              accommodations.length === 1 ? "justify-center" : 
+              accommodations.length === 2 ? "md:justify-center" : 
+              accommodations.length === 3 ? "lg:justify-center" : ""
+            }`}>
               {accommodations.map((stay, idx) => (
                 <AccommodationCard key={idx} stay={stay} lang={lang} />
               ))}
@@ -184,7 +192,11 @@ export default function HomeContent({
 
           {/* Cards */}
           {kuliner.length > 0 ? (
-            <div className="flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8">
+            <div className={`flex overflow-x-auto gap-7 pb-8 px-5 sm:px-8 snap-x snap-mandatory hide-scrollbar -mx-5 sm:-mx-8 ${
+              kuliner.length === 1 ? "justify-center" : 
+              kuliner.length === 2 ? "md:justify-center" : 
+              kuliner.length === 3 ? "lg:justify-center" : ""
+            }`}>
               {kuliner.map((item, idx) => (
                 <KulinerCard key={idx} item={item} lang={lang} />
               ))}

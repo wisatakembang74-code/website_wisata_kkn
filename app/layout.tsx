@@ -16,8 +16,13 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://website-wisata-kembang.vercel.app"),
+  metadataBase: new URL("https://wisatakembang.id"),
   title: "Wisata Desa Nanggulan — Jelajahi Keindahan Alam & Kuliner Otentik",
+  icons: {
+    icon: "/images/logo_unit_nanggulan.png",
+    shortcut: "/images/logo_unit_nanggulan.png",
+    apple: "/images/logo_unit_nanggulan.png",
+  },
   description:
     "Platform digital resmi Desa Nanggulan. Temukan destinasi wisata alam, kuliner otentik, homestay, dan layanan masyarakat desa. Pesan langsung via WhatsApp.",
   keywords: [

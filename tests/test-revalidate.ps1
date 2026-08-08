@@ -10,7 +10,7 @@
 #
 # ============================================================
 
-$BaseUrl = "https://website-wisata-kembang.vercel.app"
+$BaseUrl = "https://wisatakembang.id"
 $ValidToken = "wisata-kembang-revalidate-2026"
 $InvalidToken = "wrong-token-12345"
 

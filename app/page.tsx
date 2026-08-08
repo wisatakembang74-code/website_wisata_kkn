@@ -35,7 +35,7 @@ export default async function Home() {
             description:
               "Destinasi wisata alam, kuliner otentik, dan penginapan nyaman di Desa Nanggulan, Kulon Progo, Yogyakarta.",
             // TODO: Ganti dengan domain asli setelah deploy
-            url: "https://website-wisata-kembang.vercel.app",
+            url: "https://wisatakembang.id",
             touristType: ["Nature lover", "Cultural tourist", "Food tourist"],
             geo: {
               "@type": "GeoCoordinates",
@@ -57,7 +57,7 @@ export default async function Home() {
             description:
               "Platform digital resmi Desa Nanggulan. Temukan destinasi wisata alam, kuliner otentik, homestay, dan layanan masyarakat desa.",
             // TODO: Ganti dengan domain asli setelah deploy
-            url: "https://website-wisata-kembang.vercel.app",
+            url: "https://wisatakembang.id",
             address: {
               "@type": "PostalAddress",
               addressLocality: "Nanggulan",

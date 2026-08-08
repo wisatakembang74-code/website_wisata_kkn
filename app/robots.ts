@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 // TODO: Ganti dengan domain asli Anda setelah deploy (misal: https://nanggulan.desa.id)
-const SITE_URL = "https://website-wisata-kembang.vercel.app";
+const SITE_URL = "https://wisatakembang.id";
 
 export default function robots(): MetadataRoute.Robots {
   return {

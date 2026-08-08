@@ -6,7 +6,7 @@
 
 // ===== KONFIGURASI WEBHOOK =====
 // URL website Anda yang sudah di-deploy di Vercel
-const WEBSITE_URL = "https://website-wisata-kembang.vercel.app/";
+const WEBSITE_URL = "https://wisatakembang.id/";
 
 // Token rahasia yang sama dengan REVALIDATE_TOKEN di .env.local
 const SECRET_TOKEN = "wisata-kembang-revalidate-2026";
